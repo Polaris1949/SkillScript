@@ -1,0 +1,32 @@
+name "papapa"
+power 120
+attribute "boss"
+
+public
+{
+	if (enemy.name=="gutc") player.attack(power*2);
+
+	for (uint i=0;i<4;++i)
+		if (random&1)
+		{
+			player.hp+=100;
+			if (enemy.hp>100||player.hp==player.energy)
+				enemy.skill.at(random).pp=0;
+			else if (enemy.hp)
+				player.kill(enemy);
+			else player.attack(enemy_gp.random);
+		}
+
+	if (enemy.hp)
+	{
+		uint b=power*(random%4+1);
+		player.hp+=b;
+		enemy.hp-=b;
+	}
+}
+
+protected
+{
+	if (random&1) enemy_gp.at(random).hp-=100;
+	else player_gp.recover(random);
+}
