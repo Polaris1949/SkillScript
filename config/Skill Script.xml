@@ -1,5 +1,5 @@
 <NotepadPlus>
-    <UserLang name="Skill Script" ext="sks" udlVersion="2.1">
+    <UserLang name="Skill Script+" ext="sks" udlVersion="2.1">
         <Settings>
             <Global caseIgnored="no" allowFoldOfComments="no" foldCompact="yes" forcePureLC="0" decimalSeparator="0" />
             <Prefix Keywords1="no" Keywords2="no" Keywords3="no" Keywords4="no" Keywords5="no" Keywords6="no" Keywords7="no" Keywords8="no" />
@@ -8,7 +8,7 @@
             <Keywords name="Comments">00// 01\ 02 03/* 04*/</Keywords>
             <Keywords name="Numbers, prefix1">0x</Keywords>
             <Keywords name="Numbers, prefix2"></Keywords>
-            <Keywords name="Numbers, extras1">-</Keywords>
+            <Keywords name="Numbers, extras1"></Keywords>
             <Keywords name="Numbers, extras2"></Keywords>
             <Keywords name="Numbers, suffix1">u U</Keywords>
             <Keywords name="Numbers, suffix2"></Keywords>
@@ -26,7 +26,7 @@
             <Keywords name="Folders in comment, close"></Keywords>
             <Keywords name="Keywords1">struct&#x000D;&#x000A;class&#x000D;&#x000A;public&#x000D;&#x000A;private&#x000D;&#x000A;protected&#x000D;&#x000A;for&#x000D;&#x000A;while&#x000D;&#x000A;if&#x000D;&#x000A;try&#x000D;&#x000A;else&#x000D;&#x000A;this&#x000D;&#x000A;do&#x000D;&#x000A;return&#x000D;&#x000A;break&#x000D;&#x000A;continue</Keywords>
             <Keywords name="Keywords2">player&#x000D;&#x000A;enemy&#x000D;&#x000A;player_c&#x000D;&#x000A;enemy_c&#x000D;&#x000A;player_gp&#x000D;&#x000A;enemy_gp&#x000D;&#x000A;file&#x000D;&#x000A;skill</Keywords>
-            <Keywords name="Keywords3">index&#x000D;&#x000A;name&#x000D;&#x000A;power&#x000D;&#x000A;attribute&#x000D;&#x000A;describe&#x000D;&#x000A;type&#x000D;&#x000A;hp&#x000D;&#x000A;energy&#x000D;&#x000A;status&#x000D;&#x000A;skill_c&#x000D;&#x000A;pp&#x000D;&#x000A;attack&#x000D;&#x000A;defense&#x000D;&#x000A;m_attack&#x000D;&#x000A;m_defense&#x000D;&#x000A;speed&#x000D;&#x000A;crit&#x000D;&#x000A;dodge&#x000D;&#x000A;level&#x000D;&#x000A;main&#x000D;&#x000A;deputy&#x000D;&#x000A;hit&#x000D;&#x000A;version&#x000D;&#x000A;info&#x000D;&#x000A;eqiup&#x000D;&#x000A;weapon&#x000D;&#x000A;armor&#x000D;&#x000A;ornament&#x000D;&#x000A;spirit&#x000D;&#x000A;afraid&#x000D;&#x000A;offensive&#x000D;&#x000A;skill_status&#x000D;&#x000A;good&#x000D;&#x000A;bad&#x000D;&#x000A;abnormal</Keywords>
+            <Keywords name="Keywords3">index&#x000D;&#x000A;name&#x000D;&#x000A;power&#x000D;&#x000A;attribute&#x000D;&#x000A;describe&#x000D;&#x000A;type&#x000D;&#x000A;hp&#x000D;&#x000A;energy&#x000D;&#x000A;status&#x000D;&#x000A;skill_c&#x000D;&#x000A;pp&#x000D;&#x000A;attack&#x000D;&#x000A;defense&#x000D;&#x000A;m_attack&#x000D;&#x000A;m_defense&#x000D;&#x000A;speed&#x000D;&#x000A;crit&#x000D;&#x000A;dodge&#x000D;&#x000A;level&#x000D;&#x000A;main&#x000D;&#x000A;deputy&#x000D;&#x000A;hit&#x000D;&#x000A;version&#x000D;&#x000A;info&#x000D;&#x000A;eqiup&#x000D;&#x000A;weapon&#x000D;&#x000A;armor&#x000D;&#x000A;ornament&#x000D;&#x000A;spirit&#x000D;&#x000A;afraid&#x000D;&#x000A;offensive&#x000D;&#x000A;skill_status&#x000D;&#x000A;good&#x000D;&#x000A;bad&#x000D;&#x000A;abnormal&#x000D;&#x000A;active&#x000D;&#x000A;passive</Keywords>
             <Keywords name="Keywords4">appear&#x000D;&#x000A;disappear&#x000D;&#x000A;kill&#x000D;&#x000A;recover&#x000D;&#x000A;bridle&#x000D;&#x000A;oppose&#x000D;&#x000A;attribute_relation&#x000D;&#x000A;hurt&#x000D;&#x000A;hurt_usual&#x000D;&#x000A;insert&#x000D;&#x000A;erase&#x000D;&#x000A;replace&#x000D;&#x000A;cancel</Keywords>
             <Keywords name="Keywords5">true&#x000D;&#x000A;false&#x000D;&#x000A;null&#x000D;&#x000A;random&#x000D;&#x000A;prev_skill&#x000D;&#x000A;next_skill&#x000D;&#x000A;size&#x000D;&#x000A;at&#x000D;&#x000A;dead&#x000D;&#x000A;find&#x000D;&#x000A;prev&#x000D;&#x000A;next&#x000D;&#x000A;undefined&#x000D;&#x000A;inf&#x000D;&#x000A;is_power</Keywords>
             <Keywords name="Keywords6">bool&#x000D;&#x000A;void&#x000D;&#x000A;int&#x000D;&#x000A;uint&#x000D;&#x000A;double&#x000D;&#x000A;string&#x000D;&#x000A;vector&#x000D;&#x000A;file_type&#x000D;&#x000A;attribute_type&#x000D;&#x000A;skill_type&#x000D;&#x000A;equip_type&#x000D;&#x000A;status_type&#x000D;&#x000A;combat_unit&#x000D;&#x000A;combat_container&#x000D;&#x000A;gp_type</Keywords>
