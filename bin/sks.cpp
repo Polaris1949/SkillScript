@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <iomanip>
 #include <string>
 
 struct skill_script
@@ -11,6 +12,10 @@ struct skill_script
     std::size_t attr{};
     std::string desc{};
     std::size_t power{};
+    std::size_t type{};
+    std::size_t pp{};
+    std::size_t speed{};
+    std::size_t offen{};
 
     void print() const;
 };
@@ -30,14 +35,18 @@ std::size_t make_attr(std::size_t main, std::size_t deputy)
     return main | (deputy << 16);
 }
 
+enum common_value : std::size_t
+{
+    none, unknown = static_cast<std::size_t>(-1)
+};
+
 enum attr_value : std::size_t
 {
-    none, ice, demon, ghost, soil, water,
+    ice = 1, demon, ghost, soil, water,
     stone, common, dragon, fire, poison,
     electric, insect, grass, valiant,
     machine, beauty, wing, light,
-    holyfire, holywater, holygrass,
-    unknown = static_cast<std::size_t>(-1)
+    holyfire, holywater, holygrass
 };
 
 std::size_t attr_char(char c)
@@ -100,6 +109,75 @@ std::string attr_name(std::size_t a)
     }
 }
 
+enum type_value : std::size_t
+{
+    physics = 1, magic, variety
+};
+
+std::string type_name(std::size_t t)
+{
+    switch (t)
+    {
+        case none: return "none";
+        case physics: return "physics";
+        case magic: return "magic";
+        case variety: return "variety";
+        default: return "unknown";
+    }
+}
+
+std::size_t make_type(char c)
+{
+    switch (c)
+    {
+        case '\0': return none;
+        case 'a': case 'p': return physics;
+        case 'b': case 'm': return magic;
+        case 'c': case 'v': return variety;
+        default: return unknown;
+    }
+}
+
+enum offen_value : std::size_t
+{
+    first, last
+};
+
+std::size_t offen_char(char c)
+{
+    switch (c)
+    {
+        case '\0': case 'a': case 'f': return first;
+        case 'b': case 'l': return last;
+        default: return unknown;
+    }
+}
+
+std::size_t make_offen(std::size_t s, std::size_t n)
+{
+    return (n & ~(1 << 31)) | (s << 31);
+}
+
+std::string offen_name(std::size_t o)
+{
+    switch (o >> 31)
+    {
+        case first: return "first";
+        case last: return "last";
+        default: return "unknown";
+    }
+}
+
+bool offen_neg(std::size_t o)
+{
+    return (o >> 30) & 1;
+}
+
+int offen_num(std::size_t o)
+{
+    return (o & ~(1 << 31)) | (offen_neg(o) ? (1 << 31) : 0);
+}
+
 void skill_script::print() const
 {
     std::cout << "Index: " << index << '\n';
@@ -110,13 +188,21 @@ void skill_script::print() const
     std::cout << '\n';
     std::cout << "Description: " << desc << '\n';
     std::cout << "Power: " << power << '\n';
+    std::cout << "Type: " << type_name(type) << '\n';
+    std::cout << "PP: " << pp << '\n';
+    std::cout << "Speed: " << speed << '\n';
+    std::cout << "Offensive: ";
+    if (offen_num(offen)) std::cout << offen_name(offen) << ' '
+        << std::showpos << offen_num(offen) << std::noshowpos;
+    else std::cout << "none";
+    std::cout << '\n';
 }
 
 void help()
 {
-    std::cout <<
+    std::cerr <<
         "Usage: sks [FILE]...\n"
-        "   or: sks OPTION\n"
+        "  or:  sks OPTION\n"
         "Analyze a skill script and output user-friendly information.\n"
         "\n      --help     display this help and exit"
         "\n      --version  ouput version information and exit"
@@ -125,7 +211,7 @@ void help()
 
 void version()
 {
-    std::cout <<
+    std::cerr <<
         "sks (Polaris utils) 1.0\n"
         "Packaged by Cygwin (1.0-1)\n"
         "Copyright (C) 2016 Free Software Foundation, Inc.\n"
@@ -147,8 +233,8 @@ int main(int argc, const char* argv[])
 
     if (argc > 2)
     {
-        std::cout << "Bad usage. Try sks --help for more information."
-                  << std::endl;
+        std::cerr << "Bad usage. Try sks --help for more information."
+            << std::endl;
         return 1;
     }
 
@@ -186,7 +272,7 @@ int main(int argc, const char* argv[])
             sks.index = std::stoi(w);
 
             if (!s.empty())
-                std::cout << "Warning: ignore content after one index"
+                std::cerr << "Warning: ignore content after one index"
                     << std::endl;
 
             continue;
@@ -207,7 +293,7 @@ int main(int argc, const char* argv[])
             sks.attr = make_attr(a_main, a_deputy);
 
             if (!s.empty())
-                std::cout << "Warning: ignore content after two attributes"
+                std::cerr << "Warning: ignore content after two attributes"
                     << std::endl;
 
             continue;
@@ -225,7 +311,58 @@ int main(int argc, const char* argv[])
             sks.power = std::stoi(w);
 
             if (!s.empty())
-                std::cout << "Warning: ignore content after one power"
+                std::cerr << "Warning: ignore content after one power"
+                    << std::endl;
+
+            continue;
+        }
+
+        if (w == "type")
+        {
+            extract_word();
+            sks.type = make_type(w.front());
+
+            if (!s.empty())
+                std::cerr << "Warning: ignore content after one type"
+                    << std::endl;
+
+            continue;
+        }
+
+        if (w == "pp")
+        {
+            extract_word();
+            sks.pp = std::stoi(w);
+
+            if (!s.empty())
+                std::cerr << "Warning: ignore content after one pp"
+                    << std::endl;
+
+            continue;
+        }
+
+        if (w == "speed")
+        {
+            extract_word();
+            sks.speed = std::stoi(w);
+
+            if (!s.empty())
+                std::cerr << "Warning: ignore content after one speed"
+                    << std::endl;
+
+            continue;
+        }
+
+        if (w == "offen")
+        {
+            extract_word();
+            std::size_t o_name = offen_char(w.front());
+            extract_word();
+            std::size_t o_num = std::stoi(w);
+            sks.offen = make_offen(o_name, o_num);
+
+            if (!s.empty())
+                std::cerr << "Warning: ignore content after two offensives"
                     << std::endl;
 
             continue;
@@ -233,6 +370,6 @@ int main(int argc, const char* argv[])
     }
 
     sks.print();
-    std::cout << "Successfully analyzed." << std::endl;
+    std::cerr << "Successfully analyzed." << std::endl;
     return 0;
 }
