@@ -191,7 +191,7 @@ void skill_script::print() const
     std::cout << "Type: " << type_name(type) << '\n';
     std::cout << "PP: " << pp << '\n';
     std::cout << "Speed: " << speed << '\n';
-    std::cout << "Offensive: ";
+    std::cout << "Offense: ";
     if (offen_num(offen)) std::cout << offen_name(offen) << ' '
         << std::showpos << offen_num(offen) << std::noshowpos;
     else std::cout << "none";
@@ -251,6 +251,13 @@ int main(int argc, const char* argv[])
     }
 
     std::ifstream fin(argv[1]);
+
+    if (!fin)
+    {
+        std::cerr << "Fatal error: bad file" << std::endl;
+        return 2;
+    }
+
     std::string s, w;
     skill_script sks;
 
@@ -362,7 +369,7 @@ int main(int argc, const char* argv[])
             sks.offen = make_offen(o_name, o_num);
 
             if (!s.empty())
-                std::cerr << "Warning: ignore content after two offensives"
+                std::cerr << "Warning: ignore content after two offenses"
                     << std::endl;
 
             continue;
