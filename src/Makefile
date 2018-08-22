@@ -1,5 +1,5 @@
-object = attr.o
-binobj = $(object) main.o
+object = version.o attr.o style.o offen.o script.o skill.o analyze.o file.o
+binobj = main.o
 rootdir = /cygdrive/d/develop/sks
 bindir = $(rootdir)/bin
 incdir = $(rootdir)/include
@@ -12,7 +12,7 @@ libdyn = cyg$(libname).dll
 CXX = g++
 CXXINC = -I$(incdepdir) -I$(incdir)
 CXXFLAGS = -std=gnu++17 -g3 $(CXXINC)
-LIBS =
+LIBS = -l$(libname) -L$(bindir)
 
 all: lib install-lib bin install-bin
 
@@ -24,6 +24,9 @@ bin: $(binobj)
 lib: $(object)
 	$(AR) cru $(libsta) $(object)
 	$(CXX) $(CXXFLAGS) $(object) -fPIC -shared -o $(libdyn)
+
+$(object): %.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 $(binobj): %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
