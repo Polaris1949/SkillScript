@@ -3,9 +3,12 @@
 namespace sks
 {
 
+#define SKS_ATTR_DATA_USING(D) static_cast<_Attr_value_t>(_Attr_data_t::D)
+#define SKS_ADU(X) SKS_ATTR_DATA_USING(X)
+
 attribute::
 attribute()
-    : _M_main{}, _M_deputy{}
+    : _M_main{SKS_ADU(none)}, _M_deputy{SKS_ADU(none)}
 {}
 
 attribute::
@@ -53,9 +56,6 @@ assign(const attribute& __attr)
     this->_M_main = __attr._M_main;
     this->_M_deputy = __attr._M_deputy;
 }
-
-#define SKS_ATTR_DATA_USING(D) static_cast<_Attr_value_t>(_Attr_data_t::D)
-#define SKS_ADU(X) SKS_ATTR_DATA_USING(X)
 
 _Attr_value_t
 attr_from(char __ch)
@@ -119,9 +119,6 @@ attr_to(const _Attr_value_t& __attr)
     }
 }
 
-#undef SKS_ADU
-#undef SKS_ATTR_DATA_USING
-
 std::string
 attr_to(const attribute& __attr)
 {
@@ -130,5 +127,8 @@ attr_to(const attribute& __attr)
     __res += attr_to(__attr.deputy());
     return __res;
 }
+
+#undef SKS_ADU
+#undef SKS_ATTR_DATA_USING
 
 }
