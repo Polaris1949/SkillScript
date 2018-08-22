@@ -32,7 +32,7 @@ int main(int argc, char* argv[])
         return 0;
     }
 
-    sks::analyze(sks::file{argv[1]}());
-    std::cerr << "Successfully analyzed.\n";
+    if (sks::analyze(sks::file{argv[1]}()))
+        std::cerr << "Successfully analyzed.\n";
     return 0;
 }
