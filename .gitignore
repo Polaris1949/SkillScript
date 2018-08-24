@@ -30,3 +30,15 @@
 *.exe
 *.out
 *.app
+
+# Temporary files
+*.tmp
+*.bak
+*.log
+*.cache
+*~*
+config.h
+config.status
+Makefile
+libtool
+stamp*
