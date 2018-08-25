@@ -36,7 +36,7 @@
 *.bak
 *.log
 *.cache
-*~*
+*~
 config.h
 config.status
 Makefile
