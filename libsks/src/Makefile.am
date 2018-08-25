@@ -14,4 +14,4 @@ libsks_la_SOURCES = \
     version.cc
 libsks_la_LDFLAGS = -version-info $(LIBVER) -no-undefined
 
-AM_CXXFLAGS = -I../include
+AM_CXXFLAGS = -I$(srcdir)/../include
