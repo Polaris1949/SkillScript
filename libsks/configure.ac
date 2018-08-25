@@ -35,6 +35,5 @@ AC_TYPE_UINT8_T
 # Checks for library functions.
 
 AC_CONFIG_FILES([Makefile
-                 src/Makefile
-                 testsuite/Makefile])
+                 src/Makefile])
 AC_OUTPUT
