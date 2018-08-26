@@ -3,8 +3,6 @@
 #include <iomanip>
 #include <string>
 #include "main.h"
-#include "analyze.h"
-#include "file.h"
 
 int main(int argc, char* argv[])
 {
