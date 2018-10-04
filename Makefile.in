@@ -102,11 +102,11 @@ build_tooldir = @build_tooldir@
 # the libraries.
 RPATH_ENVVAR = @RPATH_ENVVAR@
 
-# Build programs are put under this directory.
-BUILD_SUBDIR = @build_subdir@
+# Target libraries are put under this directory:
+TARGET_SUBDIR = @target_subdir@
 # This is set by the configure script to the arguments to use when configuring
-# directories built for the build system.
-BUILD_CONFIGARGS = @build_configargs@ --with-build-subdir="$(BUILD_SUBDIR)"
+# directories built for the target.
+TARGET_CONFIGARGS = @target_configargs@
 
 # ----------------------------------------------
 # Programs producing files for the BUILD machine

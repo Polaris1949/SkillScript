@@ -3,7 +3,7 @@ AUTOMAKE_OPTIONS = foreign
 bin_PROGRAMS = sks
 sks_SOURCES = main.cc message.cc
 sks_DEPENDENCIES = libsks.la
-AM_CXXFLAGS = -I$(srcdir)/../include -I$(srcdir)/../../libsks/include
+AM_CXXFLAGS = -std=gnu++2a -I$(srcdir)/../include -I$(srcdir)/../../libsks/include
 AM_LDFLAGS = -lsks -L.
 
 libsks.la:
