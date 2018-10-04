@@ -123,8 +123,11 @@ std::string
 attr_to(const attribute& __attr)
 {
     std::string __res{attr_to(__attr.main())};
-    __res += " + ";
-    __res += attr_to(__attr.deputy());
+    if (__attr.deputy() != SKS_ADU(none))
+    {
+        __res += " + ";
+        __res += attr_to(__attr.deputy());
+    }
     return __res;
 }
 
