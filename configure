@@ -586,6 +586,9 @@ PACKAGE_URL=''
 
 ac_subst_vars='LTLIBOBJS
 LIBOBJS
+target_configdirs
+configdirs
+build_configdirs
 target_os
 target_vendor
 target_cpu
@@ -594,6 +597,9 @@ host_os
 host_vendor
 host_cpu
 host
+target_configargs
+host_configargs
+build_configargs
 ac_ct_CXX
 CXXFLAGS
 CXX
@@ -663,7 +669,10 @@ LIBS
 CPPFLAGS
 CXX
 CXXFLAGS
-CCC'
+CCC
+build_configargs
+host_configargs
+target_configargs'
 
 
 # Initialize some variables set by options.
@@ -1289,6 +1298,12 @@ Some influential environment variables:
               you have headers in a nonstandard directory <include dir>
   CXX         C++ compiler command
   CXXFLAGS    C++ compiler flags
+  build_configargs
+              additional configure arguments for build directories
+  host_configargs
+              additional configure arguments for host directories
+  target_configargs
+              additional configure arguments for target directories
 
 Use these variables to override the choices made by `configure' or to help
 it to find libraries and programs with nonstandard names/locations.
@@ -2938,6 +2953,15 @@ ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $
 ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
+# Record and document user additions to sub configure arguments.
+
+
+
+
+build_configargs="$build_configargs ${baseargs}"
+host_configargs="$host_configargs ${baseargs}"
+target_configargs="$target_configargs ${baseargs}"
+
 test "$host_noncanonical" = "$target_noncanonical" &&
   test "$program_prefix$program_suffix$program_transform_name" = \
     NONENONEs,x,x, &&
@@ -3034,6 +3058,18 @@ program_transform_name=`$as_echo "$program_transform_name" | sed "$ac_script"`
 # Checks for typedefs, structures, and compiler characteristics.
 
 # Checks for library functions.
+
+# Build module lists & subconfigure args.
+
+
+
+# Host module lists & subconfigure args.
+
+
+
+
+# Target module lists & subconfigure args.
+
 
 ac_config_files="$ac_config_files Makefile"
 

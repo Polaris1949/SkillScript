@@ -24,6 +24,18 @@ ACX_NONCANONICAL_TARGET
 AC_PROG_CC
 AC_PROG_CXX
 
+# Record and document user additions to sub configure arguments.
+AC_ARG_VAR([build_configargs],
+	   [additional configure arguments for build directories])
+AC_ARG_VAR([host_configargs],
+	   [additional configure arguments for host directories])
+AC_ARG_VAR([target_configargs],
+	   [additional configure arguments for target directories])
+
+build_configargs="$build_configargs ${baseargs}"
+host_configargs="$host_configargs ${baseargs}"
+target_configargs="$target_configargs ${baseargs}"
+
 dnl Autoconf 2.5x and later will set a default program prefix if
 dnl --target was used, even if it was the same as --host.  Disable
 dnl that behavior.  This must be done before AC_CANONICAL_SYSTEM
@@ -43,6 +55,18 @@ AC_ARG_PROGRAM
 # Checks for typedefs, structures, and compiler characteristics.
 
 # Checks for library functions.
+
+# Build module lists & subconfigure args.
+AC_SUBST(build_configargs)
+AC_SUBST(build_configdirs)
+
+# Host module lists & subconfigure args.
+AC_SUBST(host_configargs)
+AC_SUBST(configdirs)
+AC_SUBST(target_configdirs)
+
+# Target module lists & subconfigure args.
+AC_SUBST(target_configargs)
 
 AC_CONFIG_FILES([Makefile])
 AC_OUTPUT
